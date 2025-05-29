@@ -1,0 +1,17 @@
+runtime: python39
+service: hsn-agent  # Remove this line for default service
+entrypoint: gunicorn -b :$PORT main:app
+
+env_variables:
+  GCS_HSN_PATH: "hsn-data-bucket/HSN_SAC.xlsx"
+  SHEET_NAME: "HSN_MSTR"
+
+# Resource allocation (adjust as needed)
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+
+# For secret management (alternative to mounting JSON)
+beta_settings:
+  cloud_sql_instances: ""  # Not needed for your case
